@@ -1,0 +1,36 @@
+name: "Setup Jolie environment"
+description: "Setup a Jolie environment and add the command tools to the PATH"
+author: "Narongrit Unwerawattana"
+inputs:
+  version:
+    description: "The Jolie version tag to setup"
+    default: "v1.11.0"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: "11"
+        distribution: "temurin"
+    - name: "Download Release"
+      id: download-release
+      uses: robinraju/release-downloader@v1.8
+      with:
+        repository: "jolie/jolie"
+        tag: "${{ inputs.version }}"
+        fileName: "*.jar"
+        out-file-path: "jolie-installer.jar"
+    - name: "Installing Jolie"
+      shell: bash
+      run: |
+        java -jar ${{ fromJson(steps.download-release.outputs.downloaded_files)[0] }} -jh ${{ github.action_path }}/jolie -jl ${{ github.action_path }}/launcher
+    - name: "Setup JOLIE_HOME environment"
+      shell: bash
+      run: |
+        echo "JOLIE_HOME=${{ github.action_path }}/jolie" >> "$GITHUB_ENV"
+    - name: "Setup PATH environment"
+      shell: bash
+      run: |
+        echo "${{ github.action_path }}/launcher" >> $GITHUB_PATH
