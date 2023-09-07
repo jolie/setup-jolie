@@ -9,6 +9,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
@@ -34,3 +39,7 @@ runs:
       shell: bash
       run: |
         echo "${{ github.action_path }}/launcher" >> $GITHUB_PATH
+    - name: Install jpm
+      shell: bash
+      run: |
+        npm install -g @jolie/jpm
