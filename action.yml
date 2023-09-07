@@ -3,7 +3,7 @@ description: "Setup a Jolie environment and add the command tools to the PATH"
 author: "Narongrit Unwerawattana"
 inputs:
   version:
-    description: "The Jolie version tag to setup"
+    description: "The Jolie version tag to setup, please see Jolie's github release for available versions."
     default: "v1.11.0"
 
 runs:
