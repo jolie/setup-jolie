@@ -4,7 +4,7 @@ author: "Narongrit Unwerawattana"
 inputs:
   version:
     description: "The Jolie version tag to setup, please see Jolie's github release for available versions."
-    default: "v1.11.0"
+    default: "1.11.0"
 
 runs:
   using: "composite"
@@ -24,7 +24,7 @@ runs:
       uses: robinraju/release-downloader@v1.8
       with:
         repository: "jolie/jolie"
-        tag: "${{ inputs.version }}"
+        tag: "v${{ inputs.version }}"
         fileName: "*.jar"
         out-file-path: "jolie-installer.jar"
     - name: "Installing Jolie"
