@@ -1,12 +1,10 @@
-# Setup Jolie action
+# setup-jolie
 
-Github action for setup Jolie programming language to the Github action runner. It downloads, install, and setup the required system variable to execute Jolie service.
+GitHub action for setting up a Jolie programming language environment.
 
-## Usage
+It downloads and installs Jolie, making it possible to execute Jolie services by running the usual `jolie <program.ol>`.
 
-- `version`: Jolie version to be setup. It should be corresponding to the release version tag on [Releases](https://github.com/jolie/jolie/releases). default: `v1.11.0`
-
-## Example
+## Usage example
 
 ```yml
 steps:
@@ -17,9 +15,14 @@ steps:
     shell: bash
 ```
 
-## TODO
 
-- Introduce cache to increase the performance on downloading the installation.
+## Parameters
+
+- `version`: desired Jolie version. See [Jolie releases](https://github.com/jolie/jolie/releases) for available versions. Current default is `1.11.0`. Note that the `v` used in the GitHub tags of Jolie should not be used.
+
+## Future work
+
+- Introduce a cache to increase the performance of downloading the Jolie installer.
 
 ## License
 
