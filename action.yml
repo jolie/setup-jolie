@@ -1,25 +1,28 @@
-name: "Setup Jolie environment"
-description: "Setup a Jolie environment and add the command tools to the PATH"
-author: "Narongrit Unwerawattana"
+name: "Set up Jolie environment"
+description: "Set up a Jolie environment and add the command tools to the PATH"
+author: "The Jolie Team"
 inputs:
   version:
-    description: "The Jolie version tag to setup, please see Jolie's github release for available versions."
+    description: "The Jolie version tag to set up. See Jolie's GitHub releases for available versions."
     default: "1.11.0"
+  npm-version:
+    description: "The NPM version to set up"
+    default: 16
 
 runs:
   using: "composite"
   steps:
-    - name: Setup Node
+    - name: Set up Node (required for Jolie Package Manager)
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: ${{ inputs.version }}
         cache: 'npm'
-    - name: Setup Java
+    - name: Set up Java
       uses: actions/setup-java@v3
       with:
-        java-version: "11"
+        java-version: "17"
         distribution: "temurin"
-    - name: "Download Release"
+    - name: Download Jolie Release
       id: download-release
       uses: robinraju/release-downloader@v1.8
       with:
@@ -27,19 +30,19 @@ runs:
         tag: "v${{ inputs.version }}"
         fileName: "*.jar"
         out-file-path: "jolie-installer.jar"
-    - name: "Installing Jolie"
+    - name: Install Jolie
       shell: bash
       run: |
-        java -jar ${{ fromJson(steps.download-release.outputs.downloaded_files)[0] }} -jh ${{ github.action_path }}/jolie -jl ${{ github.action_path }}/launcher
-    - name: "Setup JOLIE_HOME environment"
+        java -jar ${{ fromJson(steps.download-release.outputs.downloaded_files)[0] }} -jh ${{ github.action_path }}/jolie/dist -jl ${{ github.action_path }}/jolie/launchers
+    - name: "Set up JOLIE_HOME environment"
       shell: bash
       run: |
-        echo "JOLIE_HOME=${{ github.action_path }}/jolie" >> "$GITHUB_ENV"
-    - name: "Setup PATH environment"
+        echo "JOLIE_HOME=${{ github.action_path }}/jolie/dist" >> "$GITHUB_ENV"
+    - name: Set up PATH environment
       shell: bash
       run: |
-        echo "${{ github.action_path }}/launcher" >> $GITHUB_PATH
-    - name: Install jpm
+        echo "${{ github.action_path }}/jolie/launchers" >> $GITHUB_PATH
+    - name: Install JPM (Jolie Package Manager)
       shell: bash
       run: |
         npm install -g @jolie/jpm
