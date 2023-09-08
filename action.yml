@@ -1,6 +1,9 @@
 name: "Set up Jolie environment"
 description: "Set up a Jolie environment and add the command tools to the PATH"
 author: "The Jolie Team"
+branding:
+  icon: "hexagon"
+  color: "gray-dark"
 inputs:
   version:
     description: "The Jolie version tag to set up. See Jolie's GitHub releases for available versions."
