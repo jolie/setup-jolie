@@ -2,14 +2,14 @@ name: "Set up Jolie environment"
 description: "Set up a Jolie environment and add the command tools to the PATH"
 author: "The Jolie Team"
 branding:
-  icon: "hexagon"
+  icon: "cloud"
   color: "gray-dark"
 inputs:
   version:
     description: "The Jolie version tag to set up. See Jolie's GitHub releases for available versions."
     default: "1.11.0"
-  npm-version:
-    description: "The NPM version to set up"
+  node-version:
+    description: "The node version to set up"
     default: 16
 
 runs:
@@ -18,7 +18,7 @@ runs:
     - name: Set up Node (required for Jolie Package Manager)
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ inputs.version }}
+        node-version: ${{ inputs.node-version }}
         cache: 'npm'
     - name: Set up Java
       uses: actions/setup-java@v3
