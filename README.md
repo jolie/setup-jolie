@@ -1,4 +1,4 @@
-# setup-jolie
+# Set up Jolie
 
 GitHub action for setting up a Jolie programming language environment.
 
