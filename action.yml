@@ -1,4 +1,4 @@
-name: "Set up Jolie environment"
+name: "Setup Jolie environment"
 description: "Set up a Jolie environment and add the command tools to the PATH"
 author: "The Jolie Team"
 branding:
