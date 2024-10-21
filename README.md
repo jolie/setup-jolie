@@ -18,7 +18,9 @@ steps:
 
 ## Parameters
 
-- `version`: desired Jolie version. See [Jolie releases](https://github.com/jolie/jolie/releases) for available versions. Current default is `1.11.0`. Note that the `v` used in the GitHub tags of Jolie should not be used.
+- `version`: desired Jolie version. See [Jolie releases](https://github.com/jolie/jolie/releases) for available versions. Current default is `1.12.0`. Note that the `v` used in the GitHub tags of Jolie should not be used.
+- `java-version`: desired Java version. Current default is `21`.
+- `node-version`: desired Node version. Current default is `20`.
 
 ## Future work
 

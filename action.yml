@@ -10,10 +10,10 @@ inputs:
     default: "1.12.0"
   java-version:
     description: "The Java version to set up"
-    default: 21
+    default: "21"
   node-version:
     description: "The node version to set up"
-    default: 20
+    default: "20"
 
 runs:
   using: "composite"
@@ -22,7 +22,6 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
-        cache: 'npm'
     - name: Set up Java
       uses: actions/setup-java@v3
       with:
